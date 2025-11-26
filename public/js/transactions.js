@@ -5,7 +5,6 @@ let data = {
   transactions: [],
 };
 
-
 document.getElementById("button-logout").addEventListener("click", logout);
 
 document
@@ -29,11 +28,9 @@ document
 
     saveData(data);
     e.target.reset();
-      myModal.hide();
-      
-      getTransactions();
+    myModal.hide();
 
-  
+    getTransactions();
 
     alert("Lançamento adicionado com sucesso!");
   });
@@ -53,7 +50,7 @@ function checkLogged() {
   if (dataUser) {
     data = JSON.parse(dataUser);
   }
-    getTransactions();
+  getTransactions();
 }
 
 function saveData(data) {
@@ -68,17 +65,17 @@ function logout() {
 }
 
 function getTransactions() {
-    const transactions = data.transactions;
-    let transactionHtml = ``;
+  const transactions = data.transactions;
+  let transactionHtml = ``;
 
-    if (transactions.length) {
-        transactions.forEach((item) => {
-            let type = "Entrada";
+  if (transactions.length) {
+    transactions.forEach((item) => {
+      let type = "Entrada";
 
-            if (item.type === "2") {
-                type = "Saída"
-            }
-            transactionHtml += `
+      if (item.type === "2") {
+        type = "Saída";
+      }
+      transactionHtml += `
              <tr>
                 <th scope="row">${item.date}</th>
                 <td>${item.value.toFixed(2)}</td>
@@ -86,7 +83,7 @@ function getTransactions() {
                 <td>${item.description}</td>
             </tr>
             `;
-        })
-    }
-    document.getElementById("transactions-list").innerHTML = transactionHtml;
+    });
+  }
+  document.getElementById("transactions-list").innerHTML = transactionHtml;
 }
